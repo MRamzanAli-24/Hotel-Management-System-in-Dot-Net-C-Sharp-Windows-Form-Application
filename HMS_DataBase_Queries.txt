@@ -1,0 +1,600 @@
+CREATE TABLE Users (
+    CNIC VARCHAR(20) PRIMARY KEY,
+    Name VARCHAR(100),
+    PhoneNo VARCHAR(20),
+    Address VARCHAR(200),
+    Gender VARCHAR(10),
+    UserName VARCHAR(50) UNIQUE,
+    Password VARCHAR(50),
+    Role VARCHAR(20) -- 'Admin', 'Customer', 'Employee'
+);
+
+
+CREATE TABLE Admins (
+    CNIC VARCHAR(20) PRIMARY KEY,
+    IsMainAdmin BIT,
+    FOREIGN KEY (CNIC) REFERENCES Users(CNIC)
+);
+
+CREATE TABLE Customers (
+    CNIC VARCHAR(20) PRIMARY KEY,
+    BookedRoom BIT,
+    TotalAmount INT,
+    FOREIGN KEY (CNIC) REFERENCES Users(CNIC)
+);
+
+CREATE TABLE Employees (
+    CNIC VARCHAR(20) PRIMARY KEY,
+    Salary INT,
+    FOREIGN KEY (CNIC) REFERENCES Users(CNIC)
+);
+
+
+
+CREATE TABLE Rooms (
+    RoomNumber varchar(200) PRIMARY KEY,
+    Type VARCHAR(50),
+    Category VARCHAR(50),
+    Price float ,
+    IsAvailable BIT
+);
+
+CREATE TABLE Bookings (
+    BookingID INT PRIMARY KEY IDENTITY,
+    CustomerCNIC VARCHAR(20),
+    RoomNumber varchar(200),
+    BookingDate DATE,
+    CheckInDate Date,
+    CheckOutDate Date,
+    DurationDays INT,
+    price int,
+    FOREIGN KEY (CustomerCNIC) REFERENCES Customers(CNIC),
+    FOREIGN KEY (RoomNumber) REFERENCES Rooms(RoomNumber)
+);
+
+CREATE TABLE FoodItems (
+    ItemName VARCHAR(100) primary key,
+    ItemPrice INT
+);
+
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY IDENTITY,
+    ItemName VARCHAR(100),
+    RoomNumber VARCHAR(20),
+    CustomerCNIC VARCHAR(20),
+    FOREIGN KEY (CustomerCNIC) REFERENCES Customers(CNIC),
+	Foreign key (ItemName) references FoodItems(ItemName)
+);
+
+
+create table FeedBack(
+id int primary key identity(1,1),
+customerName varchar(255),
+customerPhNo varchar(255),
+feedback varchar(255));
+
+
+insert into Users
+(CNIC,Name,PhoneNo,Address,Gender,UserName,Password,Role)
+values
+('3330321678575','Muhammad Ramzan Ali','03461426248','FSD','Male','ramzan','847','Admin');
+
+
+
+
+CREATE PROCEDURE SearchAdmins
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT 
+            u.Name, u.CNIC, u.PhoneNo, u.Address, u.Gender, 
+            u.UserName, u.Password, a.IsMainAdmin
+        FROM Admins a
+        JOIN Users u ON a.CNIC = u.CNIC
+        WHERE u.Role = 'Admin' and u.Name LIKE '%' + @SearchText + '%' OR
+		u.CNIC LIKE '%' + @SearchText + '%' OR u.PhoneNo LIKE '%' + @SearchText + '%' OR
+		u.Gender LIKE '%' + @SearchText + '%' OR u.Address LIKE '%' + @SearchText + '%'
+        ORDER BY u.Name;
+    END
+    ELSE
+    BEGIN
+        SELECT 
+            u.Name, u.CNIC, u.PhoneNo, u.Address, u.Gender, 
+            u.UserName, u.Password, a.IsMainAdmin
+        FROM Admins a
+        JOIN Users u ON a.CNIC = u.CNIC
+        WHERE u.Role = 'Admin' AND (
+            (@SearchField = 'Name' AND u.Name LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'CNIC' AND u.CNIC LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Phone Number' AND u.PhoneNo LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Gender' AND u.Gender LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Address' AND u.Address LIKE '%' + @SearchText + '%')
+        )
+        ORDER BY u.Name;
+    END
+END;
+
+
+
+CREATE PROCEDURE SearchEmployees
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT 
+            u.Name, u.CNIC, u.PhoneNo, u.Address, u.Gender, 
+            u.UserName, u.Password, e.Salary
+        FROM Employees e
+        JOIN Users u ON e.CNIC = u.CNIC
+        WHERE u.Role = 'Employee' AND (
+            u.Name LIKE '%' + @SearchText + '%' OR
+            u.CNIC LIKE '%' + @SearchText + '%' OR
+            u.PhoneNo LIKE '%' + @SearchText + '%' OR
+            u.Gender LIKE '%' + @SearchText + '%' OR
+            u.Address LIKE '%' + @SearchText + '%' OR
+            CAST(e.Salary AS NVARCHAR) LIKE '%' + @SearchText + '%'
+        )
+        ORDER BY u.Name;
+    END
+    ELSE
+    BEGIN
+        SELECT 
+            u.Name, u.CNIC, u.PhoneNo, u.Address, u.Gender, 
+            u.UserName, u.Password, e.Salary
+        FROM Employees e
+        JOIN Users u ON e.CNIC = u.CNIC
+        WHERE u.Role = 'Employee' AND (
+            (@SearchField = 'Name' AND u.Name LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'CNIC' AND u.CNIC LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Phone Number' AND u.PhoneNo LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Gender' AND u.Gender LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Address' AND u.Address LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Salary' AND CAST(e.Salary AS NVARCHAR) LIKE '%' + @SearchText + '%')
+        )
+        ORDER BY u.Name;
+    END
+END;
+
+
+
+CREATE PROCEDURE SearchRooms
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT 
+            RoomNumber, Type, Category, Price, IsAvailable
+        FROM Rooms
+        WHERE 
+            RoomNumber LIKE '%' + @SearchText + '%' OR
+            Type LIKE '%' + @SearchText + '%' OR
+            Category LIKE '%' + @SearchText + '%' OR
+            CAST(Price AS NVARCHAR) LIKE '%' + @SearchText + '%' OR
+            CAST(IsAvailable AS NVARCHAR) LIKE '%' + @SearchText + '%'
+        ORDER BY RoomNumber;
+    END
+    ELSE
+    BEGIN
+        SELECT 
+            RoomNumber, Type, Category, Price, IsAvailable
+        FROM Rooms
+        WHERE 
+            (@SearchField = 'RoomNumber' AND RoomNumber LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Type' AND Type LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Category' AND Category LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Price' AND CAST(Price AS NVARCHAR) LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'IsAvailable' AND CAST(IsAvailable AS NVARCHAR) LIKE '%' + @SearchText + '%')
+        ORDER BY RoomNumber;
+    END
+END;
+
+
+
+CREATE PROCEDURE SearchCustomers
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT 
+            u.Name, u.CNIC, u.PhoneNo, u.Address, u.Gender, 
+            u.UserName, u.Password, c.TotalAmount
+        FROM Customers c
+        JOIN Users u ON c.CNIC = u.CNIC
+        WHERE u.Role = 'Customer' AND (
+              u.Name LIKE '%' + @SearchText + '%' OR
+              u.CNIC LIKE '%' + @SearchText + '%' OR 
+              u.PhoneNo LIKE '%' + @SearchText + '%' OR
+              u.Gender LIKE '%' + @SearchText + '%' OR 
+              u.Address LIKE '%' + @SearchText + '%'
+        )
+        ORDER BY u.Name;
+    END
+    ELSE
+    BEGIN
+        SELECT 
+            u.Name, u.CNIC, u.PhoneNo, u.Address, u.Gender, 
+            u.UserName, u.Password, c.TotalAmount
+        FROM Customers c
+        JOIN Users u ON c.CNIC = u.CNIC
+        WHERE u.Role = 'Customer' AND (
+            (@SearchField = 'Name' AND u.Name LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'CNIC' AND u.CNIC LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Phone Number' AND u.PhoneNo LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Gender' AND u.Gender LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Address' AND u.Address LIKE '%' + @SearchText + '%')  OR
+			(@SearchField = 'Amount' AND c.TotalAmount LIKE '%' + @SearchText + '%')
+        )
+        ORDER BY u.Name;
+    END
+END;
+
+
+
+
+CREATE PROCEDURE SearchAvailableRooms
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT 
+            RoomNumber, Type, Category, Price, IsAvailable
+        FROM Rooms
+        WHERE IsAvailable = 1 AND (
+            RoomNumber LIKE '%' + @SearchText + '%' OR
+            Type LIKE '%' + @SearchText + '%' OR
+            Category LIKE '%' + @SearchText + '%' OR
+            CAST(Price AS NVARCHAR) LIKE '%' + @SearchText + '%'
+        )
+        ORDER BY RoomNumber;
+    END
+    ELSE
+    BEGIN
+        SELECT 
+            RoomNumber, Type, Category, Price, IsAvailable
+        FROM Rooms
+        WHERE
+            (
+                (@SearchField = 'RoomNumber' AND RoomNumber LIKE '%' + @SearchText + '%') OR
+                (@SearchField = 'Type' AND Type LIKE '%' + @SearchText + '%') OR
+                (@SearchField = 'Category' AND Category LIKE '%' + @SearchText + '%') OR
+                (@SearchField = 'Price' AND CAST(Price AS NVARCHAR) LIKE '%' + @SearchText + '%')
+            )
+            AND IsAvailable = 1
+        ORDER BY RoomNumber;
+    END
+END;
+
+
+
+
+CREATE OR ALTER PROCEDURE SearchBookings
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT 
+            B.BookingID,
+            B.RoomNumber,
+            R.Type AS RoomType,
+            R.Category AS RoomCategory,
+            B.BookingDate,
+            B.CheckInDate,
+            B.CheckOutDate,
+            B.DurationDays,
+            R.Price AS RoomPrice
+        FROM 
+            Bookings B
+        INNER JOIN 
+            Rooms R ON B.RoomNumber = R.RoomNumber
+        WHERE 
+            B.RoomNumber LIKE '%' + @SearchText + '%' OR
+            R.Type LIKE '%' + @SearchText + '%' OR
+            R.Category LIKE '%' + @SearchText + '%' OR
+            CAST(B.BookingDate AS NVARCHAR) LIKE '%' + @SearchText + '%' OR
+            CAST(B.CheckInDate AS NVARCHAR) LIKE '%' + @SearchText + '%' OR
+            CAST(B.CheckOutDate AS NVARCHAR) LIKE '%' + @SearchText + '%' OR
+            CAST(B.DurationDays AS NVARCHAR) LIKE '%' + @SearchText + '%' OR
+            CAST(R.Price AS NVARCHAR) LIKE '%' + @SearchText + '%'
+        ORDER BY B.BookingDate DESC;
+    END
+    ELSE
+    BEGIN
+        SELECT 
+            B.CustomerCNIC,
+            B.BookingID,
+            B.RoomNumber,
+            R.Type AS RoomType,
+            R.Category AS RoomCategory,
+            B.BookingDate,
+            B.CheckInDate,
+            B.CheckOutDate,
+            B.DurationDays,
+            R.Price AS RoomPrice
+        FROM 
+            Bookings B
+        INNER JOIN 
+            Rooms R ON B.RoomNumber = R.RoomNumber
+        WHERE 
+            (@SearchField = 'Room Number' AND B.RoomNumber LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Room Type' AND R.Type LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Room Category' AND R.Category LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Booking Date' AND CAST(B.BookingDate AS NVARCHAR) LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Check In Date' AND CAST(B.CheckInDate AS NVARCHAR) LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Check Out Date' AND CAST(B.CheckOutDate AS NVARCHAR) LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Days' AND CAST(B.DurationDays AS NVARCHAR) LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Price' AND CAST(R.Price AS NVARCHAR) LIKE '%' + @SearchText + '%')
+        ORDER BY B.BookingDate DESC;
+    END
+END
+
+CREATE  PROCEDURE SearchAllBookings
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT 
+            U.Name,
+            U.CNIC,
+            U.PhoneNo,
+            B.BookingID,
+            B.RoomNumber,
+            R.Type AS RoomType,
+            R.Category AS RoomCategory,
+            B.BookingDate,
+            B.CheckInDate,
+            B.CheckOutDate,
+            B.DurationDays,
+            R.Price AS RoomPrice
+        FROM 
+            Bookings B
+        INNER JOIN 
+            Rooms R ON B.RoomNumber = R.RoomNumber
+        INNER JOIN
+            Users U ON B.CustomerCNIC = U.CNIC
+        WHERE 
+            U.Name LIKE '%' + @SearchText + '%' OR
+            U.CNIC LIKE '%' + @SearchText + '%' OR
+            U.PhoneNo LIKE '%' + @SearchText + '%' OR
+            B.RoomNumber LIKE '%' + @SearchText + '%' OR
+            R.Type LIKE '%' + @SearchText + '%' OR
+            R.Category LIKE '%' + @SearchText + '%' OR
+            B.BookingDate  LIKE '%' + @SearchText + '%' OR
+            B.CheckInDate LIKE '%' + @SearchText + '%' OR
+            B.CheckOutDate LIKE '%' + @SearchText + '%' OR
+            B.DurationDays  LIKE '%' + @SearchText + '%' OR
+            R.Price  LIKE '%' + @SearchText + '%'
+        ORDER BY B.BookingDate DESC;
+    END
+    ELSE
+    BEGIN
+        SELECT 
+            U.Name,
+            U.CNIC,
+            U.PhoneNo,
+            B.BookingID,
+            B.RoomNumber,
+            R.Type AS RoomType,
+            R.Category AS RoomCategory,
+            B.BookingDate,
+            B.CheckInDate,
+            B.CheckOutDate,
+            B.DurationDays,
+            R.Price AS RoomPrice
+        FROM 
+            Bookings B
+        INNER JOIN 
+            Rooms R ON B.RoomNumber = R.RoomNumber
+        INNER JOIN
+            Users U ON B.CustomerCNIC = U.CNIC
+        WHERE 
+            (@SearchField = 'Customer Name' AND U.Name LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Customer CNIC' AND U.CNIC LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Phone Number' AND U.PhoneNo LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Room Number' AND B.RoomNumber LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Room Type' AND R.Type LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Room Category' AND R.Category LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Booking Date' AND B.BookingDate LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Check In Date' AND B.CheckInDate  LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Check Out Date' AND B.CheckOutDate LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Days' AND B.DurationDays LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Price' AND R.Price LIKE '%' + @SearchText + '%')
+        ORDER BY B.BookingDate DESC;
+    END
+END
+
+
+CREATE PROCEDURE SearchFoodItems
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT ItemName, ItemPrice
+        FROM FoodItems
+        WHERE ItemName LIKE '%' + @SearchText + '%'
+           OR ItemPrice  LIKE '%' + @SearchText + '%'
+        ORDER BY ItemName;
+    END
+    ELSE
+    BEGIN
+        SELECT ItemName, ItemPrice
+        FROM FoodItems
+        WHERE (
+            (@SearchField = 'ItemName' AND ItemName LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'ItemPrice' AND ItemPrice LIKE '%' + @SearchText + '%')
+        )
+        ORDER BY ItemName;
+    END
+END;
+
+
+
+CREATE PROCEDURE SearchAllOrders
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT 
+            ItemName,
+            CustomerCNIC,
+            OrderTime,
+            amount,
+            RoomNumber
+        FROM 
+            Orders
+        WHERE 
+            ItemName LIKE '%' + @SearchText + '%' OR
+            CustomerCNIC LIKE '%' + @SearchText + '%' OR
+            CONVERT(NVARCHAR, OrderTime, 120) LIKE '%' + @SearchText + '%' OR
+            amount LIKE '%' + @SearchText + '%' OR
+            RoomNumber LIKE '%' + @SearchText + '%'
+        ORDER BY OrderTime DESC;
+    END
+    ELSE
+    BEGIN
+        SELECT 
+            ItemName,
+            CustomerCNIC,
+            OrderTime,
+            amount,
+            RoomNumber
+        FROM 
+            Orders
+        WHERE 
+            (@SearchField = 'Item Name' AND ItemName LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Customer CNIC' AND CustomerCNIC LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Order Time' AND CONVERT(NVARCHAR, OrderTime, 120) LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Amount' AND amount LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Room Number' AND RoomNumber LIKE '%' + @SearchText + '%')
+        ORDER BY OrderTime DESC;
+    END
+END
+
+
+CREATE PROCEDURE SearchOrderedItems
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100),
+    @SearchCNIC NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT 
+            OrderID,
+            ItemName,
+            OrderTime,
+            amount,
+            RoomNumber,
+            Quantity,
+            OrderStatus
+        FROM 
+            Orders
+        WHERE 
+            CustomerCNIC= @SearchCNIC AND(
+            OrderID Like '%' + @SearchText + '%' OR
+            ItemName LIKE '%' + @SearchText + '%' OR
+            CONVERT(NVARCHAR, OrderTime, 120) LIKE '%' + @SearchText + '%' OR
+            amount LIKE '%' + @SearchText + '%' OR
+            RoomNumber LIKE '%' + @SearchText + '%' OR
+            Quantity LIKE '%' + @SearchText + '%' )
+        ORDER BY OrderTime DESC;
+    END
+    ELSE
+    BEGIN
+        SELECT 
+            OrderID,
+            ItemName,
+            OrderTime,
+            amount,
+            RoomNumber,
+            Quantity,
+            OrderStatus
+        FROM 
+            Orders
+        WHERE 
+            (@SearchField = 'Order ID' AND CustomerCNIC= @SearchCNIC AND OrderID LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Item Name' AND CustomerCNIC= @SearchCNIC AND ItemName LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Order Time' AND  CustomerCNIC= @SearchCNIC AND CONVERT(NVARCHAR, OrderTime, 120) LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Amount' AND  CustomerCNIC= @SearchCNIC AND amount LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Room Number' AND  CustomerCNIC= @SearchCNIC AND RoomNumber LIKE '%' + @SearchText + '%') OR
+            (@SearchField = 'Quantity' AND  CustomerCNIC= @SearchCNIC AND Quantity LIKE '%' + @SearchText + '%') 
+        ORDER BY OrderTime DESC;
+    END
+END
+
+CREATE PROCEDURE SearchReport
+    @SearchField NVARCHAR(50),
+    @SearchText NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @SearchField IS NULL OR @SearchField = 'All'
+    BEGIN
+        SELECT 
+            id, CustomerPhoneNo, PaidAmount , CustomerName , paymentDate
+        FROM Report
+        WHERE (
+            id LIKE '%' + @SearchText + '%' OR
+            CustomerPhoneNo LIKE '%' + @SearchText + '%' OR
+            CustomerName LIKE '%' + @SearchText + '%' OR
+            paymentDate LIKE '%' + @SearchText + '%' OR
+            CAST(PaidAmount AS NVARCHAR) LIKE '%' + @SearchText + '%'
+        )
+        ORDER BY id;
+    END
+    ELSE
+    BEGIN
+        SELECT 
+            id, CustomerPhoneNo, PaidAmount , CustomerName , paymentDate
+        FROM Report
+        WHERE
+            (
+                (@SearchField = 'ID' AND id LIKE '%' + @SearchText + '%') OR
+                (@SearchField = 'Customer Name' AND CustomerName LIKE '%' + @SearchText + '%') OR
+                (@SearchField = 'Customer Phone No' AND CustomerPhoneNo LIKE '%' + @SearchText + '%') OR
+                (@SearchField = 'Payment Date' AND paymentDate LIKE '%' + @SearchText + '%') OR
+                (@SearchField = 'Paid Amount' AND CAST(PaidAmount AS NVARCHAR) LIKE '%' + @SearchText + '%')
+            )
+        ORDER BY id;
+    END
+END;

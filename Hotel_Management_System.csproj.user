@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="UI\AdminAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\AdminDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\AdminHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\AdminView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\BillManagemnet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\BookingAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\BookingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\CustomerBookingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\CustomerDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\CustomerFeedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\CustomerHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\CustomerAddOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\CustomerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\CustomerViewOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\EmployeeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\EmployeeDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\EmployeeHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\EmployeeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ItemAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ItemView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\LoginFormDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManageOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\RoomAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\RoomTypeCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\RoomView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\CustomerAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\BookingUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ViewFeedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ReportsDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

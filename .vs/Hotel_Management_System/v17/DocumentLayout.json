@@ -1,0 +1,182 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\C#Programs\\projects\\Hotel_Management_System\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|e:\\c#programs\\projects\\hotel_management_system\\dl\\dlclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|solutionrelative:dl\\dlclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|e:\\c#programs\\projects\\hotel_management_system\\ui\\adminadd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|solutionrelative:ui\\adminadd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|e:\\c#programs\\projects\\hotel_management_system\\bl\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|solutionrelative:bl\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|e:\\c#programs\\projects\\hotel_management_system\\bl\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|solutionrelative:bl\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|e:\\c#programs\\projects\\hotel_management_system\\bl\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|solutionrelative:bl\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|e:\\c#programs\\projects\\hotel_management_system\\bl\\fooditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|solutionrelative:bl\\fooditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|e:\\c#programs\\projects\\hotel_management_system\\bl\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|solutionrelative:bl\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|e:\\c#programs\\projects\\hotel_management_system\\bl\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|solutionrelative:bl\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|e:\\c#programs\\projects\\hotel_management_system\\bl\\blclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|solutionrelative:bl\\blclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|e:\\c#programs\\projects\\hotel_management_system\\bl\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA3D6C99-F586-4235-B513-15FB884974D1}|Hotel_Management_System.csproj|solutionrelative:bl\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DLClass.cs",
+              "DocumentMoniker": "E:\\C#Programs\\projects\\Hotel_Management_System\\DL\\DLClass.cs",
+              "RelativeDocumentMoniker": "DL\\DLClass.cs",
+              "ToolTip": "E:\\C#Programs\\projects\\Hotel_Management_System\\DL\\DLClass.cs",
+              "RelativeToolTip": "DL\\DLClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T12:31:27.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminAdd.cs",
+              "DocumentMoniker": "E:\\C#Programs\\projects\\Hotel_Management_System\\UI\\AdminAdd.cs",
+              "RelativeDocumentMoniker": "UI\\AdminAdd.cs",
+              "ToolTip": "E:\\C#Programs\\projects\\Hotel_Management_System\\UI\\AdminAdd.cs",
+              "RelativeToolTip": "UI\\AdminAdd.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T13:30:38.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\User.cs",
+              "RelativeDocumentMoniker": "BL\\User.cs",
+              "ToolTip": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\User.cs",
+              "RelativeToolTip": "BL\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T03:30:56.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Room.cs",
+              "DocumentMoniker": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\Room.cs",
+              "RelativeDocumentMoniker": "BL\\Room.cs",
+              "ToolTip": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\Room.cs",
+              "RelativeToolTip": "BL\\Room.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T03:30:19.953Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Orders.cs",
+              "DocumentMoniker": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\Orders.cs",
+              "RelativeDocumentMoniker": "BL\\Orders.cs",
+              "ToolTip": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\Orders.cs",
+              "RelativeToolTip": "BL\\Orders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T03:29:57.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FoodItem.cs",
+              "DocumentMoniker": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\FoodItem.cs",
+              "RelativeDocumentMoniker": "BL\\FoodItem.cs",
+              "ToolTip": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\FoodItem.cs",
+              "RelativeToolTip": "BL\\FoodItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T03:28:01.298Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Admin.cs",
+              "DocumentMoniker": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\Admin.cs",
+              "RelativeDocumentMoniker": "BL\\Admin.cs",
+              "ToolTip": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\Admin.cs",
+              "RelativeToolTip": "BL\\Admin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T03:27:40.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FeedBack.cs",
+              "DocumentMoniker": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\FeedBack.cs",
+              "RelativeDocumentMoniker": "BL\\FeedBack.cs",
+              "ToolTip": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\FeedBack.cs",
+              "RelativeToolTip": "BL\\FeedBack.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T03:27:14.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\Booking.cs",
+              "RelativeDocumentMoniker": "BL\\Booking.cs",
+              "ToolTip": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\Booking.cs",
+              "RelativeToolTip": "BL\\Booking.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T03:20:16.054Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BLClass.cs",
+              "DocumentMoniker": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\BLClass.cs",
+              "RelativeDocumentMoniker": "BL\\BLClass.cs",
+              "ToolTip": "E:\\C#Programs\\projects\\Hotel_Management_System\\BL\\BLClass.cs",
+              "RelativeToolTip": "BL\\BLClass.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAIwBUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T03:16:28.303Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
